@@ -6,7 +6,8 @@ Page({
    */
   data: {
     arr: [1,2,3,4],
-    condition: false
+    condition: false,
+    value: ''
   },
 
   pushItem(){
@@ -17,6 +18,9 @@ Page({
   },
   changeClass(){
     this.setData({ condition: !this.data.condition})
+  },
+  test(event){
+    console.log(event)
   },
   /**
    * 生命周期函数--监听页面加载

@@ -6,4 +6,8 @@
 --------------------------------------------
 <view class="{{condition?'active':''}}">我是切换class</view>
 <button bindtap="changeClass">点我切换</button>
-
+——-----------------------------------------
+<view>
+  <input bindblur="test" placeholder="输入同步到view中"></input>
+</view>
+<view>{{value}}</view>

@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="header">
+    <view class="avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="details">
+      <open-data type="userNickName" class="name"></open-data>
+      <navigator url="/pages/binding/binding" wx:if="{{!me.account}}">绑定PC账号</navigator>
+    </view>
+    <button open-type="contact" class="qr">问题反馈</button>
+  </view>
+  <view class="tabs">
+    <view class="{{tab === 'task' && 'active'}}" 
+    hover-class="hover-active"
+    data-name="task" bindtap="changeTab">任务历史</view>
+    <view class="{{tab === 'tomato' && 'active'}}" 
+    hover-class="hover-active"
+    data-name="tomato" bindtap="changeTab">番茄历史</view>
+  </view>
+
+  <scroll-view scroll-y="true" class="lists" wx:if="{{tab === 'task'}}">
+    <view class="item" wx:for="{{todos}}" wx:key="index" wx:for-index="key">
+      <wxs src="../../lib/formattor.wxs" module="formattor"></wxs>
+      <view class="time">{{key}}</view>
+      <view class="content" wx:for="{{todos[key]}}" wx:key="index">
+        <text>{{item.time}}</text>
+        <view class="detail">{{item.description}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y="true" class="lists" wx:if="{{tab === 'tomato'}}">
+    <view class="item" wx:for="{{tomatoes}}" wx:key="index" wx:for-index="key">
+      <wxs src="../../lib/formattor.wxs" module="formattor"></wxs>
+      <view class="time">{{key}}</view>
+      <view class="content" wx:for="{{tomatoes[key]}}" wx:key="index">
+        <text>{{item.time}}</text>
+        <view class="detail">{{item.description}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>

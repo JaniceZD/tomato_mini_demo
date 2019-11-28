@@ -1,2 +1,18 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view class="home-container">
+  <scroll-view class="todoList" scroll-y="true">
+    <view class="item" wx:for="{{lists}}" wx:for-index="index" wx:key="{{item.id}}" wx:if="{{!item.completed}}">
+      <view class="select {{item.completed && 'active'}}" bindtap='destroyTodo' data-index="{{index}}" data-id="{{item.id}}"></view>
+      <text bindtap="changeText" data-index="{{index}}" data-id="{{item.id}}" data-content="{{item.description}}">{{item.description}}</text>
+    </view>
+  </scroll-view>
+  <t-button type="change" class="createButton" text="创建任务" bindtap="showCreateConfirm">
+  </t-button>
+  <view class="tomato-wrapper">
+    <navigator class="tomato" url="/pages/tomato/tomato">
+      <t-clock text="点击开始闹钟"></t-clock>
+    </navigator>
+  </view>
+  <t-confirm visible="{{visibleCreateConfirm}}" placeholder="添加新任务" bindconfirm="confirmCreate" bindcancel="hideCreateConfirm"></t-confirm>
+  <t-confirm bindconfirm="confirmUpdate" value="{{updateContent}}" bindcancel="hideUpdateConfirm" visible="{{visibleUpdateConfirm}}"></t-confirm>
+</view>

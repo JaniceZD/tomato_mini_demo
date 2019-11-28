@@ -1,66 +1,95 @@
-// pages/home/home.js
+const {
+  http
+} = require("../../lib/http.js")
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  updateId: '',
+  updateIndex: '',
   data: {
-
+    visibleCreateConfirm: false,
+    visibleUpdateConfirm: false,
+    lists: [],
+    updateContent: ''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onShow() {
+    http.get('/todos?completed=false').then(res => {
+      this.setData({
+        lists: res.data.resource
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  confirmCreate(event) {
+    console.log(event)
+    let content = event.detail
+    if (content) {
+      http.post('/todos', {
+        completed: false,
+        description: content
+      }).then(res => {
+        let todo = [...res.data.resource]
+        this.data.lists = [...todo, ...this.data.lists]
+        this.setData({
+          lists: this.data.lists
+        })
+        this.hideCreateConfirm() //隐藏创建任务框
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  changeText(event) {
+    let {
+      content,
+      id,
+      index
+    } = event.currentTarget.dataSet
+    this.updateId = id
+    this.updateIndex = index
+    this.setData({
+      visibleUpdateConfirm: true,
+      updateContent: content
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  confirmUpdate(event) {
+    console.log(event)
+    let content = event.detail
+    http.put(`/todos/${this.updateId}`, {
+      description: content
+    }).then(res => {
+      let todo = res.data.resource
+      this.data.lists[updateIndex] = todo
+      this.setData({
+        lists: this.data.lists
+      })
+      this.hideUpdateConfirm()
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  destroyTodo(event) {
+    let {
+      id,
+      index
+    } = event.currentTarget.dataSet
+    http.put(`/todos/${id}`, {
+      completed: true
+    }).then(res => {
+      let todo = res.data.resource
+      this.data.lists[index] = todo
+      this.setData({
+        lists: this.data.lists
+      })
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  showCreateConfirm() {
+    this.setData({
+      visibleCreateConfirm: true
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  hideCreateConfirm() {
+    this.setData({
+      visibleCreateConfirm: false
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  hideUpdateConfirm() {
+    this.setData({
+      visibleUpdateConfirm: false
+    })
   }
 })

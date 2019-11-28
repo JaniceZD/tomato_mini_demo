@@ -1,0 +1,10 @@
+<view class="binding">
+  <view class="title">绑定PC账号</view>
+  <view class="input-wrapper">
+    <input placeholder="账号" bindinput="watchAccount" value="{{account}}"></input>
+    <input placeholder="密码" bindinput="watchPassword" value="{{password}}"></input>
+  </view>
+  <t-button type="change" text="绑 定" size="mini" bindtap="submit"></t-button>
+  <view class="tips">绑定PC账号，立即同步数据</view>
+  <image src="../../images/tomato-bg.png" class="bg"></image>
+</view>
