@@ -2,7 +2,7 @@
 <view class="home-container">
   <scroll-view class="todoList" scroll-y="true">
     <view class="item" wx:for="{{lists}}" wx:for-index="index" wx:key="{{item.id}}" wx:if="{{!item.completed}}">
-      <view class="select {{item.completed && 'active'}}" bindtap='destroyTodo' data-index="{{index}}" data-id="{{item.id}}"></view>
+      <view class="select {{item.completed && 'active'}}" hover-class="select active" bindtap='destroyTodo' data-index="{{index}}" data-id="{{item.id}}"></view>
       <text bindtap="changeText" data-index="{{index}}" data-id="{{item.id}}" data-content="{{item.description}}">{{item.description}}</text>
     </view>
   </scroll-view>
@@ -13,6 +13,6 @@
       <t-clock text="点击开始闹钟"></t-clock>
     </navigator>
   </view>
-  <t-confirm visible="{{visibleCreateConfirm}}" placeholder="添加新任务" bindconfirm="confirmCreate" bindcancel="hideCreateConfirm"></t-confirm>
+  <t-confirm visible="{{visibleCreateConfirm}}" value="" placeholder="添加新任务" bindconfirm="confirmCreate" bindcancel="hideCreateConfirm" confirm-type="done"></t-confirm>
   <t-confirm bindconfirm="confirmUpdate" value="{{updateContent}}" bindcancel="hideUpdateConfirm" visible="{{visibleUpdateConfirm}}"></t-confirm>
 </view>

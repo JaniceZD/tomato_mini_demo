@@ -1,8 +1,10 @@
-const { http } = require('../../lib/http.js')
+const {
+  http
+} = require('../../lib/http.js')
 
 Page({
   data: {
-    tab: 'tomato',
+    tab: 'task',
     tomatoes: {},
     todos: {},
     me: {}
@@ -15,7 +17,9 @@ Page({
     })
   },
   fetchTomato() {
-    http.get('/tomatoes', { is_group: 'yes' })
+    http.get('/tomatoes', {
+        is_group: 'yes'
+      })
       .then(res => {
         this.setData({
           tomatoes: res.data.resources
@@ -23,7 +27,9 @@ Page({
       })
   },
   fetchTodos() {
-    http.get('/todos', { is_group: 'yes' })
+    http.get('/todos', {
+        is_group: 'yes'
+      })
       .then(res => {
         this.setData({
           todos: res.data.resources
@@ -31,7 +37,7 @@ Page({
       })
   },
   changeTab(event) {
-    let name = event.currentTarget.dataSet.name
+    let name = event.currentTarget.dataset.name
     this.setData({
       tab: name
     })

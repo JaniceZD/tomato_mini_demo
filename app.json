@@ -4,8 +4,7 @@
     "pages/tomato/tomato",
     "pages/binding/binding",
     "pages/me/me",
-    "pages/login/login",
-    "pages/logs/logs"
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

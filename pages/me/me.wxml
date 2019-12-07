@@ -1,4 +1,4 @@
-<view class="container">
+<view class="meContainer">
   <view class="header">
     <view class="avatar">
       <open-data type="userAvatarUrl"></open-data>
@@ -10,20 +10,16 @@
     <button open-type="contact" class="qr">问题反馈</button>
   </view>
   <view class="tabs">
-    <view class="{{tab === 'task' && 'active'}}" 
-    hover-class="hover-active"
-    data-name="task" bindtap="changeTab">任务历史</view>
-    <view class="{{tab === 'tomato' && 'active'}}" 
-    hover-class="hover-active"
-    data-name="tomato" bindtap="changeTab">番茄历史</view>
+    <view hover-class="hover-active" class="{{tab === 'task' && 'active'}}" data-name="task" bindtap="changeTab">任务历史</view>
+    <view hover-class="hover-active" class="{{tab === 'tomato' && 'active'}}" data-name="tomato" bindtap="changeTab">番茄历史</view>
   </view>
 
   <scroll-view scroll-y="true" class="lists" wx:if="{{tab === 'task'}}">
     <view class="item" wx:for="{{todos}}" wx:key="index" wx:for-index="key">
       <wxs src="../../lib/formattor.wxs" module="formattor"></wxs>
-      <view class="time">{{key}}</view>
+      <view class="time">{{formattor.monthFormat(key)}}</view>
       <view class="content" wx:for="{{todos[key]}}" wx:key="index">
-        <text>{{item.time}}</text>
+        <text>{{formattor.dateFormat(item.created_at,"h:m")}}</text>
         <view class="detail">{{item.description}}</view>
       </view>
     </view>
@@ -32,9 +28,9 @@
   <scroll-view scroll-y="true" class="lists" wx:if="{{tab === 'tomato'}}">
     <view class="item" wx:for="{{tomatoes}}" wx:key="index" wx:for-index="key">
       <wxs src="../../lib/formattor.wxs" module="formattor"></wxs>
-      <view class="time">{{key}}</view>
+      <view class="time">{{formattor.monthFormat(key)}}</view>
       <view class="content" wx:for="{{tomatoes[key]}}" wx:key="index">
-        <text>{{item.time}}</text>
+        <text>{{formattor.dateFormat(item.created_at,"h:m")}}</text>
         <view class="detail">{{item.description}}</view>
       </view>
     </view>

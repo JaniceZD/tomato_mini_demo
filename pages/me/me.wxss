@@ -1,4 +1,4 @@
-.container {
+.meContainer {
   background: #f6f6f6;
   min-height: 100vh;
   max-height: 100vh;
@@ -50,7 +50,6 @@
 
 .tabs > view {
   position: relative;
-  height: 100%;
 }
 
 .tabs > view.hover-active {
@@ -59,7 +58,7 @@
 
 .tabs > view.active::after {
   content: "";
-  width: 80%;
+  width: 92%;
   height: 8rpx;
   border-radius: 4rpx;
   background: #fe996f;
@@ -69,14 +68,14 @@
   transform: translate(-50%, -50%);
 }
 
-.container .lists {
+.meContainer .lists {
   flex: 1;
   padding: 0 24rpx;
   box-sizing: border-box;
   overflow: scroll;
 }
 
-.container .lists .item {
+.meContainer .lists .item {
   background: #fff;
   font-size: 32rpx;
   color: #333;
@@ -86,22 +85,22 @@
   margin-bottom: 32rpx;
 }
 
-.container .lists .item .time {
+.meContainer .lists .item .time {
   font-size: 38rpx;
   font-weight: bold;
   margin-bottom: 24rpx;
 }
 
-.container .lists .item .content {
+.meContainer .lists .item .content {
   display: flex;
   padding-bottom: 24rpx;
 }
 
-.container .lists .item .content text {
+.meContainer .lists .item .content text {
   padding-right: 25rpx;
 }
 
-.container .lists .item .content detail {
+.meContainer .lists .item .content detail {
   flex: 1;
   flex-wrap: wrap;
 }
@@ -114,4 +113,5 @@
   background: transparent;
   color: #fe996f;
   font-size: 24rpx;
+  padding-left: 150rpx;
 }

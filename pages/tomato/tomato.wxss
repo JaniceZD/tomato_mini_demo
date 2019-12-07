@@ -6,8 +6,7 @@
 }
 
 .clock {
-  padding-top: 282rpx;
-  padding-bottom: 139rpx;
+  padding-top: 50rpx;
 }
 
 .stop {

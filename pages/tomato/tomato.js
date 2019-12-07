@@ -15,6 +15,7 @@ Page({
     this.startTimer()
     http.post('/tomatoes')
       .then(res => {
+        console.log(res)
         this.setData({
           tomato: res.data.resource
         })
@@ -57,7 +58,7 @@ Page({
   },
   confirmAbandon(event) {
     let content = event.detail
-    http.put(`/tomato/${this.data.tomato.id}`, {
+    http.put(`/tomatoes/${this.data.tomato.id}`, {
       description: content,
       aborted: true
     }).then(res => {
@@ -66,7 +67,7 @@ Page({
   },
   confirmFinish(event) {
     let content = event.detail
-    http.put(`/tomato/${this.data.tomato.id}`, {
+    http.put(`/tomatoes/${this.data.tomato.id}`, {
       description: content
     }).then(res => {
       wx.navigateBack({ to: -1 })

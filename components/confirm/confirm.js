@@ -28,15 +28,15 @@ Component({
   },
   methods: {
     watchValue(event) {
-      console.log('value' + event.detail.value)
       this.setData({
         value:event.detail.value
       })
-      console.log(this.data.value)
     },
     confirm: function(e) {
-      console.log(e)
       this.triggerEvent('confirm', this.data.value)
+      this.setData({
+        value: ''
+      })
     },
     cancel: function() {
       this.triggerEvent('cancel', this.data.value)
